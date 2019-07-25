@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h3>Album</h3>
+
+<div class="btn-group">
+  <a href="/albums/{{album.id}}/edit" class="btn btn-primary btn-sm">
+    <i class="glyphicon glyphicon-edit"></i>
+    Edit album
+  </a>
+  <a href="/albums/{{album.id}}/delete" class="btn btn-danger btn-sm">
+    <i class="glyphicon glyphicon-trash"></i>
+    Delete album
+  </a>
+</div>
+
+<div class="media">
+  {# [START album_image] #}
+  <div class="media-left">
+    {% if album.imageUrl %}
+      <img class="album-image" src="{{album.imageUrl}}">
+    {% else %}
+      <img class="album-image" src="https://raw.githubusercontent.com/linuxacademy/appenginedeepdive/master/cloud-storage/assets/generic-LA-album.png">
+    {% endif %}
+  </div>
+  {# [END album_image] #}
+  <div class="media-body">
+    <h4 class="album-title">
+      {{album.title}}
+    </h4>
+  </div>
+</div>
+
+{% endblock %}

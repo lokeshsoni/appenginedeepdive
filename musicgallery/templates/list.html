@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="row">
+  <div class="col-md-12">
+    <h3>Albums</h3>
+    <a href="/albums/add" class="btn btn-success btn-sm">
+      <i class="glyphicon glyphicon-plus"></i>
+      Add album
+    </a>
+  </div>
+</div>
+
+<div class="row">
+{% for album in albums %}
+<div class="media outerMedia col-md-3">
+  <a href="/albums/{{album.id}}">
+    <div class="media">
+      {% if album.imageUrl %}
+        <img class="album-image img-responsive" src="{{album.imageUrl}}">
+      {% else %}
+        <img class="album-image img-responsive" src="https://raw.githubusercontent.com/linuxacademy/appenginedeepdive/master/cloud-storage/assets/generic-LA-album.png">
+      {% endif %}
+    </div>
+    <div class="media-body">
+      <h4>{{album.title}}</h4>
+      <p>{{album.artist}}</p>
+    </div>
+  </a>
+</div>
+{% else %}
+<p>No albums found</p>
+{% endfor %}
+</div>
+
+{% if next_page_token %}
+<nav>
+  <ul class="pager">
+    <li><a href="?page_token={{next_page_token}}">More</a></li>
+  </ul>
+</nav>
+{% endif %}
+
+{% endblock %}
